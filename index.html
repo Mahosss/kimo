@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo</title>
+<title>Kimo Profile</title>
 
 <style>
 body{
@@ -21,7 +21,7 @@ body{
 /* الحاوية */
 .container{
     width:90%;
-    max-width:450px;
+    max-width:700px;
     background:#1a1a27;
     padding:25px;
     border-radius:25px;
@@ -72,7 +72,7 @@ body{
 .about-btn-box{
     width:100%;
     display:flex;
-    justify-content:flex-end;
+    justify-content:flex-end; /* يظهر على اليمين */
     margin-top:20px;
 }
 
@@ -155,13 +155,15 @@ body{
     transition:0.4s ease;
 }
 
+/* كل فيديو يظهر جزئياً حسب العرض */
 .video-item{
-    min-width:100%;
+    min-width:25%; /* يظهر 4 فيديوهات */
+    padding:5px;
 }
 
-video{
+.video-item video{
     width:100%;
-    height:220px;
+    height:180px;
     border-radius:12px;
     object-fit:cover;
     box-shadow:0 0 10px rgba(255,63,168,0.5);
@@ -201,11 +203,11 @@ video{
     <div class="name">Kimo</div>
 
     <div class="about-btn-box">
-        <button class="about-btn">عني</button>
+        <button class="about-btn">نبذة عني</button>
     </div>
 
     <div class="text-box">
-        <div class="type"> دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.</div>
+        <div class="type">شاب بسيط… بس جوايا عالم كامل محدش يعرفه.</div>
     </div>
 
     <div class="separator"></div>
@@ -234,19 +236,22 @@ video{
 let index = 0;
 const track = document.getElementById("track");
 const total = track.children.length;
+const visible = 4; // عدد الفيديوهات المرئية
 
 function update(){
-    track.style.transform = `translateX(-${index * 100}%)`;
+    let offset = (100 / visible) * index;
+    track.style.transform = `translateX(-${offset}%)`;
 }
 
 function slideRight(){
     index++;
-    if(index >= total){ index = 0; }
+    if(index > total - visible){ index = 0; }
     update();
 }
+
 function slideLeft(){
     index--;
-    if(index < 0){ index = total - 1; }
+    if(index < 0){ index = total - visible; }
     update();
 }
 </script>
