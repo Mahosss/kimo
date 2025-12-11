@@ -20,12 +20,12 @@ body{
 
 /* الحاوية */
 .container{
-    width:90%;
-    max-width:700px;
+    width:95%;  /* أكبر شويه */
+    max-width:750px; /* أعرض من قبل */
     background:#1a1a27;
     padding:25px;
     border-radius:25px;
-    box-shadow:0 0 20px rgba(255,0,120,0.25);
+    box-shadow:0 0 25px rgba(255,0,120,0.25);
 }
 
 /* الصورة */
@@ -139,7 +139,7 @@ body{
     box-shadow:0 0 10px #ff3fa8;
 }
 
-/* سلايدر الفيديو */
+/* سلايدر الفيديوهات */
 .video-slider-container{
     width:100%;
     position:relative;
@@ -161,11 +161,10 @@ body{
     padding:5px;
 }
 
-.video-item video{
+.video-item iframe{
     width:100%;
-    height:180px;
+    height:320px; /* طولية زي حالات الواتس */
     border-radius:12px;
-    object-fit:cover;
     box-shadow:0 0 10px rgba(255,63,168,0.5);
 }
 
@@ -182,6 +181,7 @@ body{
     color:#fff;
     user-select:none;
     box-shadow:0 0 10px rgba(255,63,168,0.7);
+    z-index:10;
 }
 .arrow:hover{
     transform:translateY(-50%) scale(1.15);
@@ -219,13 +219,13 @@ body{
 
         <div class="video-track" id="track">
 
-            <div class="video-item"><video src="video1.mp4" controls></video></div>
-            <div class="video-item"><video src="video2.mp4" controls></video></div>
-            <div class="video-item"><video src="video3.mp4" controls></video></div>
-            <div class="video-item"><video src="video4.mp4" controls></video></div>
-            <div class="video-item"><video src="video5.mp4" controls></video></div>
-            <div class="video-item"><video src="video6.mp4" controls></video></div>
-            <div class="video-item"><video src="video7.mp4" controls></video></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/iS-6fT-cBYk" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/iMZ1skkbUWI" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/RVKbjHpcDQg" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/pTo5rjh7J1Y" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/VIDEO5" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/VIDEO6" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/VIDEO7" allowfullscreen></iframe></div>
 
         </div>
     </div>
