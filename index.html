@@ -24,12 +24,12 @@ body {
 
 /* ===== Container ===== */
 .container {
-    width:95%;
-    max-width:1100px;
+    width:90%;
+    max-width:900px;
     background:#1a1a27;
-    padding:40px;
-    border-radius:25px;
-    box-shadow:0 0 30px rgba(255,63,168,0.3);
+    padding:25px 30px;
+    border-radius:20px;
+    box-shadow:0 0 25px rgba(255,63,168,0.3);
     display:flex;
     flex-direction:column;
     align-items:center;
@@ -37,12 +37,12 @@ body {
 
 /* ===== Avatar & Info ===== */
 .avatar {
-    width:160px;
-    height:160px;
+    width:140px;
+    height:140px;
     border-radius:50%;
     overflow:hidden;
     border:4px solid #ff3fa8;
-    margin-bottom:15px;
+    margin-bottom:10px;
 }
 .avatar img {
     width:100%;
@@ -55,8 +55,8 @@ body {
 }
 
 .name {
-    font-size:28px;
-    margin-bottom:10px;
+    font-size:24px;
+    margin-bottom:8px;
     text-align:center;
     background:linear-gradient(90deg,#fff,#ff3fa8,#d47cff,#fff);
     -webkit-background-clip:text;
@@ -72,28 +72,28 @@ body {
 /* ===== About Button ===== */
 .about-btn {
     margin-left:auto; /* يظهر على اليمين */
-    margin-bottom:20px;
+    margin-bottom:15px;
     background:#ff3fa8;
     color:#fff;
     border:none;
-    padding:8px 18px;
-    border-radius:12px;
+    padding:6px 14px;
+    border-radius:10px;
     cursor:pointer;
-    box-shadow:0 0 15px rgba(255,63,168,0.5);
+    box-shadow:0 0 12px rgba(255,63,168,0.5);
     transition:0.3s;
 }
 .about-btn:hover {
-    transform:scale(1.08);
+    transform:scale(1.07);
 }
 
 /* ===== Text Box ===== */
 .text-box {
     width:100%;
     background:#282836;
-    padding:15px;
-    border-radius:15px;
+    padding:12px;
+    border-radius:12px;
     border-right:3px solid #ff3fa8;
-    margin-bottom:30px;
+    margin-bottom:20px;
 }
 .type {
     white-space:nowrap;
@@ -106,7 +106,7 @@ body {
 
 /* ===== Separator ===== */
 .separator {
-    margin:30px 0;
+    margin:20px 0;
     width:100%;
     height:1px;
     background:#555;
@@ -114,15 +114,15 @@ body {
 }
 .separator::after {
     content:"";
-    width:12px;
-    height:12px;
+    width:10px;
+    height:10px;
     border-radius:50%;
     background:#ff3fa8;
     position:absolute;
     left:50%;
     top:50%;
     transform:translate(-50%,-50%);
-    box-shadow:0 0 10px #ff3fa8;
+    box-shadow:0 0 8px #ff3fa8;
 }
 
 /* ===== Video Slider ===== */
@@ -130,16 +130,16 @@ body {
     width:100%;
     position:relative;
     overflow:hidden;
-    padding:20px 0;
+    padding:15px 0;
 }
 .video-track {
     display:flex;
-    transition:transform 0.5s ease;
+    transition:transform 0.4s ease;
 }
 .video-item {
-    flex:0 0 150px; /* عرض الفيديو */
-    margin:0 8px;
-    border-radius:15px;
+    flex:0 0 calc(25% - 10px); /* 4 فيديوهات في الصفحة */
+    margin:0 5px;
+    border-radius:12px;
     overflow:hidden;
     background:#22222f;
     cursor:pointer;
@@ -149,14 +149,14 @@ body {
     width:100%;
     height:280px; /* الطول مثل حالات الواتس */
     border-radius:12px;
-    box-shadow:0 5px 20px rgba(255,63,168,0.4);
+    box-shadow:0 5px 15px rgba(255,63,168,0.4);
 }
 .video-item:hover {
     transform:scale(1.05);
-    box-shadow:0 15px 30px rgba(255,63,168,0.5);
+    box-shadow:0 12px 25px rgba(255,63,168,0.5);
 }
 
-/* ===== Arrows (بعيدة عن الفيديوهات) ===== */
+/* ===== Arrows ===== */
 .arrow {
     position:absolute;
     top:50%;
@@ -170,15 +170,15 @@ body {
     z-index:10;
     box-shadow:0 0 15px rgba(255,63,168,0.7);
 }
-.arrow-left { left:-50px; }  /* بعيد عن الفيديو */
-.arrow-right { right:-50px; } /* بعيد عن الفيديو */
+.arrow-left { left:-40px; }
+.arrow-right { right:-40px; }
 
 /* ===== Responsive ===== */
 @media(max-width:768px){
-    .video-item { flex:0 0 120px; margin:0 6px; }
+    .video-item { flex:0 0 calc(50% - 10px); }
     .video-item iframe { height:200px; }
-    .arrow-left { left:-30px; }
-    .arrow-right { right:-30px; }
+    .arrow-left { left:-25px; }
+    .arrow-right { right:-25px; }
 }
 </style>
 </head>
@@ -224,12 +224,13 @@ body {
 const videoTrack = document.getElementById('videoTrack');
 const videoItems = Array.from(videoTrack.children);
 let videoIndex = 0;
+const visibleCount = 4; // عدد الفيديوهات المعروضة
 
 function moveVideo(dir){
     videoIndex += dir;
     if(videoIndex < 0) videoIndex = 0;
-    if(videoIndex > videoItems.length - 6) videoIndex = videoItems.length - 6; // 6 videos visible
-    let itemWidth = videoItems[0].offsetWidth + 16; // عرض الفيديو + margin
+    if(videoIndex > videoItems.length - visibleCount) videoIndex = videoItems.length - visibleCount;
+    let itemWidth = videoItems[0].offsetWidth + 10; // عرض الفيديو + margin
     videoTrack.style.transform = `translateX(-${videoIndex * itemWidth}px)`;
 }
 </script>
