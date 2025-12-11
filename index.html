@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo Video Slider</title>
+<title>Kimo</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-/* ===== Reset & Base ===== */
+
 * {
     margin:0;
     padding:0;
@@ -22,7 +22,6 @@ body {
     direction:rtl;
 }
 
-/* ===== Container ===== */
 .container {
     width:90%;
     max-width:900px;
@@ -35,7 +34,6 @@ body {
     align-items:center;
 }
 
-/* ===== Avatar & Info ===== */
 .avatar {
     width:140px;
     height:140px;
@@ -69,9 +67,8 @@ body {
     100% { background-position:250%; }
 }
 
-/* ===== About Button ===== */
 .about-btn {
-    margin-left:auto; /* يظهر على اليمين */
+    margin-left:auto; 
     margin-bottom:15px;
     background:#ff3fa8;
     color:#fff;
@@ -86,7 +83,6 @@ body {
     transform:scale(1.07);
 }
 
-/* ===== Text Box ===== */
 .text-box {
     width:100%;
     background:#282836;
@@ -103,7 +99,6 @@ body {
     padding-right:5px;
 }
 
-/* ===== Separator ===== */
 .separator {
     margin:20px 0;
     width:100%;
@@ -124,7 +119,6 @@ body {
     box-shadow:0 0 8px #ff3fa8;
 }
 
-/* ===== Video Slider ===== */
 .video-slider-container {
     width:100%;
     position:relative;
@@ -136,7 +130,7 @@ body {
     transition:transform 0.4s ease;
 }
 .video-item {
-    flex:0 0 calc(25% - 10px); /* 4 فيديوهات في الصفحة */
+    flex:0 0 calc(25% - 10px); 
     margin:0 5px;
     border-radius:12px;
     overflow:hidden;
@@ -146,7 +140,7 @@ body {
 }
 .video-item iframe {
     width:100%;
-    height:280px; /* الطول مثل حالات الواتس */
+    height:280px; 
     border-radius:12px;
     box-shadow:0 5px 15px rgba(255,63,168,0.4);
 }
@@ -155,7 +149,6 @@ body {
     box-shadow:0 12px 25px rgba(255,63,168,0.5);
 }
 
-/* ===== Arrows ===== */
 .arrow {
     position:absolute;
     top:50%;
@@ -172,7 +165,6 @@ body {
 .arrow-left { left:-40px; }
 .arrow-right { right:-40px; }
 
-/* ===== Responsive ===== */
 @media(max-width:768px){
     .video-item { flex:0 0 calc(50% - 10px); }
     .video-item iframe { height:200px; }
@@ -184,25 +176,20 @@ body {
 <body>
 
 <div class="container">
-    <!-- Avatar -->
     <div class="avatar">
         <img src="https://img.alfrsantv.com/img/f176541510944881.png">
     </div>
 
-    <!-- Name -->
     <div class="name">Kɪᴍᴏ</div>
 
-    <!-- About Button -->
     <button class="about-btn">عني</button>
 
-    <!-- Text Box -->
     <div class="text-box">
         <div id="aboutText"></div>
     </div>
 
     <div class="separator"></div>
 
-    <!-- Video Slider -->
     <div class="video-slider-container">
         <div class="arrow arrow-left" onclick="moveVideo(-1)">❮</div>
         <div class="video-track" id="videoTrack">
@@ -218,17 +205,16 @@ body {
 </div>
 
 <script>
-// ===== Video Slider =====
 const videoTrack = document.getElementById('videoTrack');
 const videoItems = Array.from(videoTrack.children);
 let videoIndex = 0;
-const visibleCount = 4; // عدد الفيديوهات المعروضة
+const visibleCount = 4; 
 
 function moveVideo(dir){
     videoIndex += dir;
     if(videoIndex < 0) videoIndex = 0;
     if(videoIndex > videoItems.length - visibleCount) videoIndex = videoItems.length - visibleCount;
-    let itemWidth = videoItems[0].offsetWidth + 10; // عرض الفيديو + margin
+    let itemWidth = videoItems[0].offsetWidth + 10; 
     videoTrack.style.transform = `translateX(-${videoIndex * itemWidth}px)`;
 }
 
