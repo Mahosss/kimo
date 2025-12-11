@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo 10</title>
+<title>Kimo Music Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
-*{ margin:0; padding:0; box-sizing:border-box; font-family:'Cairo', sans-serif;}
-body{ background:#101018; color:#fff; display:flex; justify-content:center; padding:20px; direction:rtl; }
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
+body{background:#101018;color:#fff;display:flex;justify-content:center;padding:20px;direction:rtl;}
 
 .container{
     width:95%;
@@ -21,115 +21,67 @@ body{ background:#101018; color:#fff; display:flex; justify-content:center; padd
     align-items:center;
 }
 
-/* Avatar */
-.avatar{
-    width:160px; height:160px;
-    border-radius:50%;
-    overflow:hidden;
-    border:4px solid #ff3fa8;
-    box-shadow:0 0 20px rgba(255,63,168,0.4);
-    margin-bottom:15px;
-    cursor:pointer;
-    transition:0.5s;
-}
-.avatar img{ width:100%; height:100%; object-fit:cover; transition:0.5s;}
-.avatar:hover{ transform:scale(1.15); box-shadow:0 20px 40px rgba(255,63,168,0.6); }
+/* Avatar & Info */
+.avatar{ width:160px;height:160px;border-radius:50%;overflow:hidden;border:4px solid #ff3fa8;margin-bottom:15px; }
+.avatar img{width:100%;height:100%;object-fit:cover; transition:0.3s;}
+.avatar:hover img{transform:scale(1.15);}
+.name{ font-size:28px; margin-bottom:10px; background:linear-gradient(90deg,#fff,#ff3fa8,#d47cff,#fff); -webkit-background-clip:text;color:transparent; background-size:250%; animation:shine 4s linear infinite; text-align:center;}
+@keyframes shine{0%{background-position:0%}100%{background-position:250%}}
+.about-btn{align-self:flex-end;margin-bottom:20px;background:#ff3fa8;color:#fff;border:none;padding:8px 18px;border-radius:12px;cursor:pointer;box-shadow:0 0 15px rgba(255,63,168,0.5);transition:0.3s;}
+.about-btn:hover{transform:scale(1.08);}
+.text-box{width:100%;background:#282836;padding:15px;border-radius:15px;border-right:3px solid #ff3fa8;margin-bottom:30px;}
+.type{white-space:nowrap;overflow:hidden;border-right:2px solid #fff;animation:typing 5s steps(60) forwards, blink .7s infinite;}
+@keyframes typing{from{width:0}to{width:100%}} @keyframes blink{0%,100%{border-color:transparent}50%{border-color:#fff}}
+.separator{margin:30px 0;width:100%;height:1px;background:#555;position:relative;}
+.separator::after{content:"";width:12px;height:12px;border-radius:50%;background:#ff3fa8;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px #ff3fa8;}
 
-/* Name */
-.name{
-    font-size:28px;
-    background: linear-gradient(90deg,#fff,#ff3fa8,#d47cff,#fff);
-    -webkit-background-clip:text;
-    color:transparent;
-    background-size:250%;
-    animation: shine 4s linear infinite;
-    text-align:center;
-    margin-bottom:10px;
-}
-@keyframes shine{ 0%{background-position:0%} 100%{background-position:250%} }
-
-/* About Button on Right */
-.about-btn{
-    align-self:flex-end; /* زر على اليمين */
-    margin-bottom:20px;
-    background:#ff3fa8; color:#fff;
-    border:none; padding:8px 18px;
-    border-radius:12px; cursor:pointer;
-    box-shadow:0 0 15px rgba(255,63,168,0.5);
-    transition:0.3s;
-}
-.about-btn:hover{ transform:scale(1.08); }
-
-/* Text Box */
-.text-box{
-    width:100%; background:#282836;
-    padding:15px; border-radius:15px;
-    border-right:3px solid #ff3fa8;
-    margin-bottom:30px;
-}
-.type{
-    white-space:nowrap; overflow:hidden;
-    border-right:2px solid #fff;
-    animation: typing 5s steps(60) forwards, blink .7s infinite;
-}
-@keyframes typing{ from{width:0} to{width:100%} }
-@keyframes blink{ 0%,100%{border-color:transparent} 50%{border-color:#fff} }
-
-/* Separator */
-.separator{ margin:30px 0; width:100%; height:1px; background:#555; position:relative;}
-.separator::after{ content:""; width:12px;height:12px;border-radius:50%; background:#ff3fa8; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); box-shadow:0 0 10px #ff3fa8; }
-
-/* 3D Video Slider */
-.slider{
+/* Music Slider */
+.music-slider-container{
     width:100%;
-    display:flex;
-    overflow:hidden; /* يخفي الفيديوهات على الأطراف */
-    perspective:1200px;
     position:relative;
-    justify-content:center;
+    overflow:hidden;
+    padding:20px 0;
 }
-
-.track{
+.music-track{
     display:flex;
-    transition: transform 0.5s ease;
+    transition:transform 0.5s ease;
 }
-
-.slide{
-    flex:0 0 250px;
-    margin:0 15px;
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease, box-shadow 0.5s ease;
+.music-item{
+    flex:0 0 160px;
+    margin:0 10px;
     border-radius:15px;
     overflow:hidden;
+    background:#22222f;
+    text-align:center;
     cursor:pointer;
+    transition:transform 0.3s, box-shadow 0.3s;
 }
-.slide iframe{
-    width:100%; height:180px;
-    border-radius:12px;
-    box-shadow:0 5px 20px rgba(255,63,168,0.4);
+.music-item img{
+    width:100%; border-radius:15px;
 }
-.slide.center{
-    transform: scale(1.1) translateY(-10px);
-    box-shadow:0 20px 40px rgba(255,63,168,0.7);
+.music-item:hover{
+    transform:scale(1.08);
+    box-shadow:0 15px 30px rgba(255,63,168,0.5);
+}
+.music-item p{
+    margin:8px 0; font-weight:bold; font-size:14px;
 }
 
-/* Arrow Buttons */
+/* Arrows */
 .arrow{
     position:absolute; top:50%;
     transform:translateY(-50%);
-    background:#ff3fa8; color:#fff;
-    padding:12px; border-radius:50%;
-    cursor:pointer; font-size:22px; z-index:10;
+    background:#ff3fa8;color:#fff;
+    padding:12px;border-radius:50%;
+    cursor:pointer;font-size:22px;z-index:10;
     box-shadow:0 0 15px rgba(255,63,168,0.7);
 }
-.arrow-left{ left:10px; }
-.arrow-right{ right:10px; }
+.arrow-left{left:10px;}
+.arrow-right{right:10px;}
 
 /* Responsive */
 @media(max-width:768px){
-    .slide{ flex:0 0 180px; margin:0 10px;}
-    .slide iframe{ height:120px; }
-    .name{ font-size:22px; }
+    .music-item{ flex:0 0 120px; margin:0 8px; }
 }
 </style>
 </head>
@@ -142,46 +94,32 @@ body{ background:#101018; color:#fff; display:flex; justify-content:center; padd
     <div class="text-box"><div class="type">الفتره دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.</div></div>
     <div class="separator"></div>
 
-    <div class="slider">
-        <div class="arrow arrow-left" onclick="move(-1)">❮</div>
-        <div class="track" id="track">
-            <div class="slide"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe></div>
-            <div class="slide"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe></div>
-            <div class="slide"><iframe src="https://www.youtube.com/embed/wXmzYi-ufEA" allowfullscreen></iframe></div>
-            <div class="slide"><iframe src="https://www.youtube.com/embed/69jK7Z1kisM" allowfullscreen></iframe></div>
-            <div class="slide"><iframe src="https://www.youtube.com/embed/5-fkcYX8sSg" allowfullscreen></iframe></div>
-            <div class="slide"><iframe src="https://www.youtube.com/embed/qgko7i3piKM" allowfullscreen></iframe></div>
+    <div class="music-slider-container">
+        <div class="arrow arrow-left" onclick="moveMusic(-1)">❮</div>
+        <div class="music-track" id="musicTrack">
+            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song1"><p>أغنية 1</p></div>
+            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song2"><p>أغنية 2</p></div>
+            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song3"><p>أغنية 3</p></div>
+            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song4"><p>أغنية 4</p></div>
+            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song5"><p>أغنية 5</p></div>
+            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song6"><p>أغنية 6</p></div>
         </div>
-        <div class="arrow arrow-right" onclick="move(1)">❯</div>
+        <div class="arrow arrow-right" onclick="moveMusic(1)">❯</div>
     </div>
 </div>
 
 <script>
-const track = document.getElementById('track');
-let slides = Array.from(track.children);
-let currentIndex = 0;
+const track = document.getElementById('musicTrack');
+const items = Array.from(track.children);
+let musicIndex = 0;
 
-function updateSlides(){
-    slides.forEach((slide,i)=>{
-        slide.classList.remove('center');
-        if(i===currentIndex) slide.classList.add('center');
-    });
-    let offset = currentIndex * (slides[0].offsetWidth + 30); // slide width + margin
-    // center the current slide
-    let slider = document.querySelector('.slider');
-    let centerOffset = (slider.offsetWidth - slides[0].offsetWidth)/2;
-    track.style.transform = `translateX(-${offset - centerOffset}px)`;
+function moveMusic(dir){
+    musicIndex += dir;
+    if(musicIndex < 0) musicIndex = 0;
+    if(musicIndex > items.length - 6) musicIndex = items.length - 6; // 6 items visible
+    let itemWidth = items[0].offsetWidth + 20; // width + margin
+    track.style.transform = `translateX(-${musicIndex * itemWidth}px)`;
 }
-
-function move(dir){
-    currentIndex += dir;
-    if(currentIndex < 0) currentIndex = 0;
-    if(currentIndex >= slides.length) currentIndex = slides.length - 1;
-    updateSlides();
-}
-
-// Initialize
-updateSlides();
 </script>
 
 </body>
