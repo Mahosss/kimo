@@ -22,51 +22,50 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
 }
 
 .avatar {
-    width:170px; 
-    height:170px; 
-    border-radius:50%; 
-    overflow:hidden; 
-    border:4px solid #ff3fa8; 
-    box-shadow:0 0 20px rgba(255,63,168,0.4); 
-    animation:float 3s infinite ease-in-out; 
-    position:relative; 
-    cursor:pointer; 
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    width:170px;
+    height:170px;
+    border-radius:50%;
+    overflow:hidden;
+    border:4px solid #ff3fa8;
+    box-shadow:0 0 20px rgba(255,63,168,0.4);
+    position:relative;
+    cursor:pointer;
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
 }
 .avatar img {
-    width:100%; 
-    height:100%; 
-    object-fit:cover; 
-    transition: transform 0.4s ease;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition: transform 0.5s ease;
+}
+.avatar::before {
+    content:"";
+    position:absolute;
+    top:-10%;
+    left:-10%;
+    width:120%;
+    height:120%;
+    border-radius:50%;
+    background: rgba(255,63,168,0.2);
+    filter: blur(15px);
+    opacity:0;
+    transition: opacity 0.5s ease;
 }
 .avatar:hover {
-    transform: scale(1.1); 
-    box-shadow:0 15px 30px rgba(255,63,168,0.6);
+    transform: scale(1.12) translateY(-5px);
+    box-shadow:0 20px 40px rgba(255,63,168,0.6);
 }
 .avatar:hover img {
-    transform: scale(1.25); 
+    transform: scale(1.3);
+}
+.avatar:hover::before {
+    opacity:1;
+    animation: glow 1.5s infinite alternate;
 }
 
-.status{ 
-    width:16px; 
-    height:16px; 
-    border-radius:50%; 
-    position:absolute; 
-    bottom:6px; 
-    right:6px; 
-    border:2px solid #fff; 
-}
-.status.online{ background:#4CAF50; animation:pulse 1.5s infinite; }
-.status.offline{ background:#F44336; animation:none; }
-
-@keyframes pulse{ 
-    0%{ transform: scale(1); opacity:0.8; } 
-    50%{ transform: scale(1.4); opacity:0.5; } 
-    100%{ transform: scale(1); opacity:0.8; } 
-}
-@keyframes float{ 
-    0%,100%{ transform:translateY(0); } 
-    50%{ transform:translateY(-10px); } 
+@keyframes glow {
+    0% { transform: scale(1); opacity:0.6; }
+    100% { transform: scale(1.2); opacity:0.9; }
 }
 
 .name{ 
