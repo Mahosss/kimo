@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo Music Slider</title>
+<title>Kimo Video Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
@@ -35,19 +35,19 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
 .separator{margin:30px 0;width:100%;height:1px;background:#555;position:relative;}
 .separator::after{content:"";width:12px;height:12px;border-radius:50%;background:#ff3fa8;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);box-shadow:0 0 10px #ff3fa8;}
 
-/* Music Slider */
-.music-slider-container{
+/* Video Slider */
+.video-slider-container{
     width:100%;
     position:relative;
     overflow:hidden;
     padding:20px 0;
 }
-.music-track{
+.video-track{
     display:flex;
     transition:transform 0.5s ease;
 }
-.music-item{
-    flex:0 0 160px;
+.video-item{
+    flex:0 0 300px;
     margin:0 10px;
     border-radius:15px;
     overflow:hidden;
@@ -56,15 +56,18 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
     cursor:pointer;
     transition:transform 0.3s, box-shadow 0.3s;
 }
-.music-item img{
-    width:100%; border-radius:15px;
+.video-item iframe{
+    width:100%; 
+    height:180px;
+    border-radius:12px;
+    box-shadow:0 5px 20px rgba(255,63,168,0.4);
 }
-.music-item:hover{
-    transform:scale(1.08);
+.video-item:hover{
+    transform:scale(1.05);
     box-shadow:0 15px 30px rgba(255,63,168,0.5);
 }
-.music-item p{
-    margin:8px 0; font-weight:bold; font-size:14px;
+.video-item p{
+    margin:8px 0; font-weight:bold; font-size:14px; color:#fff;
 }
 
 /* Arrows */
@@ -81,7 +84,8 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
 
 /* Responsive */
 @media(max-width:768px){
-    .music-item{ flex:0 0 120px; margin:0 8px; }
+    .video-item{ flex:0 0 180px; margin:0 8px; }
+    .video-item iframe{ height:120px; }
 }
 </style>
 </head>
@@ -94,31 +98,31 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
     <div class="text-box"><div class="type">الفتره دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.</div></div>
     <div class="separator"></div>
 
-    <div class="music-slider-container">
-        <div class="arrow arrow-left" onclick="moveMusic(-1)">❮</div>
-        <div class="music-track" id="musicTrack">
-            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song1"><p>أغنية 1</p></div>
-            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song2"><p>أغنية 2</p></div>
-            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song3"><p>أغنية 3</p></div>
-            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song4"><p>أغنية 4</p></div>
-            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song5"><p>أغنية 5</p></div>
-            <div class="music-item"><img src="https://via.placeholder.com/160x160?text=Song6"><p>أغنية 6</p></div>
+    <div class="video-slider-container">
+        <div class="arrow arrow-left" onclick="moveVideo(-1)">❮</div>
+        <div class="video-track" id="videoTrack">
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe><p>فيديو 1</p></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe><p>فيديو 2</p></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/wXmzYi-ufEA" allowfullscreen></iframe><p>فيديو 3</p></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/69jK7Z1kisM" allowfullscreen></iframe><p>فيديو 4</p></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/5-fkcYX8sSg" allowfullscreen></iframe><p>فيديو 5</p></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/qgko7i3piKM" allowfullscreen></iframe><p>فيديو 6</p></div>
         </div>
-        <div class="arrow arrow-right" onclick="moveMusic(1)">❯</div>
+        <div class="arrow arrow-right" onclick="moveVideo(1)">❯</div>
     </div>
 </div>
 
 <script>
-const track = document.getElementById('musicTrack');
-const items = Array.from(track.children);
-let musicIndex = 0;
+const videoTrack = document.getElementById('videoTrack');
+const videoItems = Array.from(videoTrack.children);
+let videoIndex = 0;
 
-function moveMusic(dir){
-    musicIndex += dir;
-    if(musicIndex < 0) musicIndex = 0;
-    if(musicIndex > items.length - 6) musicIndex = items.length - 6; // 6 items visible
-    let itemWidth = items[0].offsetWidth + 20; // width + margin
-    track.style.transform = `translateX(-${musicIndex * itemWidth}px)`;
+function moveVideo(dir){
+    videoIndex += dir;
+    if(videoIndex < 0) videoIndex = 0;
+    if(videoIndex > videoItems.length - 3) videoIndex = videoItems.length - 3; // 3 videos visible
+    let itemWidth = videoItems[0].offsetWidth + 20; // width + margin
+    videoTrack.style.transform = `translateX(-${videoIndex * itemWidth}px)`;
 }
 </script>
 
