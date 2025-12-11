@@ -3,22 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo 5</title>
+<title>Kimo Profile Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
 body{background:#101018;color:#fff;display:flex;justify-content:center;padding:20px;direction:rtl;}
 
 .container{
-    max-width:900px;
-    width:95%;
-    background:#1a1a27;
-    padding:40px;
-    border-radius:25px;
-    box-shadow:0 0 25px rgba(255,0,120,0.25);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
+    max-width:900px;width:95%;background:#1a1a27;padding:40px;border-radius:25px;
+    box-shadow:0 0 25px rgba(255,0,120,0.25);display:flex;flex-direction:column;align-items:center;
 }
 
 /* الصورة */
@@ -123,26 +116,23 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
 
 <script>
 const track = document.getElementById("track");
-const items = track.children;
+const items = Array.from(track.children);
 let index = 0;
 
-function getVisibleCount() { return window.innerWidth <= 768 ? 2 : 4; }
+function getVisibleCount(){ return window.innerWidth <= 768 ? 2 : 4; }
 
-function updateSlider() {
+function updateSlider(){
     const visible = getVisibleCount();
-    const itemWidth = items[0].offsetWidth;
+    const itemWidth = items[0].getBoundingClientRect().width;
+    const maxIndex = items.length - visible;
+    if(index < 0) index = 0;
+    if(index > maxIndex) index = maxIndex;
     track.style.transform = `translateX(-${index * itemWidth}px)`;
 }
 
-function slideRight() {
-    const visible = getVisibleCount();
-    if(index < items.length - visible) index++;
-    updateSlider();
-}
-function slideLeft() {
-    if(index > 0) index--;
-    updateSlider();
-}
+function slideRight(){ index++; updateSlider(); }
+function slideLeft(){ index--; updateSlider(); }
+
 window.addEventListener('resize', updateSlider);
 updateSlider();
 
