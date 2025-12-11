@@ -3,14 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo</title>
+<title>Kimo Profile</title>
+
+<!-- خط Cairo -->
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
+
 <style>
 body{
     margin:0;
     padding:0;
     background:#101018;
-    font-family:'Tajawal', sans-serif;
+    font-family:'Cairo', sans-serif;
     direction:rtl;
     display:flex;
     justify-content:center;
@@ -18,12 +21,12 @@ body{
     color:#fff;
 }
 
-/* الحاوية */
+/* البوكس الأوسط */
 .container{
-    width:95%;  /* أكبر شويه */
-    max-width:750px; /* أعرض من قبل */
+    width:95%;       /* أعرض شويه */
+    max-width:800px; /* أعرض من قبل */
     background:#1a1a27;
-    padding:25px;
+    padding:35px;    /* زيادة البادينج لتخفيف الزحمة */
     border-radius:25px;
     box-shadow:0 0 25px rgba(255,0,120,0.25);
 }
@@ -72,7 +75,7 @@ body{
 .about-btn-box{
     width:100%;
     display:flex;
-    justify-content:flex-end; /* يظهر على اليمين */
+    justify-content:flex-end; /* الزر على اليمين */
     margin-top:20px;
 }
 
@@ -92,7 +95,7 @@ body{
     transform:scale(1.07);
 }
 
-/* زر نص */
+/* صندوق النص */
 .text-box{
     background:#282836;
     padding:12px;
@@ -155,15 +158,14 @@ body{
     transition:0.4s ease;
 }
 
-/* كل فيديو يظهر جزئياً حسب العرض */
 .video-item{
-    min-width:25%; /* يظهر 4 فيديوهات */
+    min-width:25%; 
     padding:5px;
 }
 
 .video-item iframe{
     width:100%;
-    height:320px; /* طولية زي حالات الواتس */
+    height:320px;
     border-radius:12px;
     box-shadow:0 0 10px rgba(255,63,168,0.5);
 }
@@ -203,11 +205,11 @@ body{
     <div class="name">Kimo</div>
 
     <div class="about-btn-box">
-        <button class="about-btn">نبذة عني</button>
+        <button class="about-btn">عني</button>
     </div>
 
     <div class="text-box">
-        <div class="type">شاب بسيط… بس جوايا عالم كامل محدش يعرفه.</div>
+        <div class="type">الفتره دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.</div>
     </div>
 
     <div class="separator"></div>
@@ -236,7 +238,7 @@ body{
 let index = 0;
 const track = document.getElementById("track");
 const total = track.children.length;
-const visible = 4; // عدد الفيديوهات المرئية
+const visible = 4;
 
 function update(){
     let offset = (100 / visible) * index;
