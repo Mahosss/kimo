@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo</title>
+<title>Kimo Video Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 /* ===== Reset & Base ===== */
@@ -156,7 +156,7 @@ body {
     box-shadow:0 15px 30px rgba(255,63,168,0.5);
 }
 
-/* ===== Arrows ===== */
+/* ===== Arrows (بعيدة عن الفيديوهات) ===== */
 .arrow {
     position:absolute;
     top:50%;
@@ -170,13 +170,15 @@ body {
     z-index:10;
     box-shadow:0 0 15px rgba(255,63,168,0.7);
 }
-.arrow-left { left:10px; }
-.arrow-right { right:10px; }
+.arrow-left { left:-50px; }  /* بعيد عن الفيديو */
+.arrow-right { right:-50px; } /* بعيد عن الفيديو */
 
 /* ===== Responsive ===== */
 @media(max-width:768px){
     .video-item { flex:0 0 120px; margin:0 6px; }
     .video-item iframe { height:200px; }
+    .arrow-left { left:-30px; }
+    .arrow-right { right:-30px; }
 }
 </style>
 </head>
