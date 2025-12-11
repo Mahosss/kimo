@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo Video</title>
+<title>Kimo Video Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
@@ -67,9 +67,6 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
     transform:scale(1.05);
     box-shadow:0 15px 30px rgba(255,63,168,0.5);
 }
-.video-item p{
-    margin:8px 0; font-weight:bold; font-size:14px; color:#fff;
-}
 
 /* Arrows */
 .arrow{
@@ -102,12 +99,12 @@ body{background:#101018;color:#fff;display:flex;justify-content:center;padding:2
     <div class="video-slider-container">
         <div class="arrow arrow-left" onclick="moveVideo(-1)">❮</div>
         <div class="video-track" id="videoTrack">
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe><p>فيديو 1</p></div>
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe><p>فيديو 2</p></div>
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/wXmzYi-ufEA" allowfullscreen></iframe><p>فيديو 3</p></div>
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/69jK7Z1kisM" allowfullscreen></iframe><p>فيديو 4</p></div>
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/5-fkcYX8sSg" allowfullscreen></iframe><p>فيديو 5</p></div>
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/qgko7i3piKM" allowfullscreen></iframe><p>فيديو 6</p></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/wXmzYi-ufEA" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/69jK7Z1kisM" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/5-fkcYX8sSg" allowfullscreen></iframe></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/qgko7i3piKM" allowfullscreen></iframe></div>
         </div>
         <div class="arrow arrow-right" onclick="moveVideo(1)">❯</div>
     </div>
