@@ -45,6 +45,8 @@ body{
     border:4px solid #ff3fa8;
     box-shadow:0 0 20px rgba(255,63,168,0.4);
     animation:float 3s infinite ease-in-out;
+    position:relative;
+    cursor:pointer;
 }
 
 @keyframes float{
@@ -56,6 +58,30 @@ body{
     width:100%;
     height:100%;
     object-fit:cover;
+    transition: transform 0.3s ease;
+}
+
+.avatar:active img{
+    transform: scale(1.2);
+}
+
+/* مؤشر أونلاين/أوفلاين */
+.status{
+    width:18px;
+    height:18px;
+    border-radius:50%;
+    position:absolute;
+    bottom:5px;
+    right:5px;
+    border:2px solid #fff;
+}
+
+.status.online{
+    background:#4CAF50; /* أخضر */
+}
+
+.status.offline{
+    background:#F44336; /* أحمر */
 }
 
 /* الاسم */
@@ -92,7 +118,7 @@ body{
     cursor:pointer;
     box-shadow:0 0 10px rgba(255,63,168,0.5);
     transition:0.3s;
-    margin-left:auto; /* هذا يجعل الزر على أقصى اليمين */
+    margin-left:auto; /* الزر على أقصى اليمين */
 }
 
 .about-btn:hover{
@@ -221,6 +247,7 @@ body{
 
     <div class="avatar">
         <img src="https://img.alfrsantv.com/img/f176541510944881.png">
+        <span class="status online"></span> <!-- ضع "offline" لتغيير اللون -->
     </div>
 
     <div class="name">Kɪᴍᴏ</div>
@@ -243,7 +270,7 @@ body{
         <div class="video-track" id="track">
 
             <div class="video-item"><iframe src="https://www.youtube.com/embed/X2OKDgKwVBQvw9sG" allowfullscreen></iframe></div>
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></div>
+            <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/wXmzYi-ufEA" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/69jK7Z1kisM" allowfullscreen></iframe></div>
