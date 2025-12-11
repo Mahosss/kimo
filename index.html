@@ -63,7 +63,6 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
     opacity:1;
     animation: glow 1.5s infinite alternate;
 }
-
 @keyframes glow {
     0% { transform: scale(1); opacity:0.6; }
     100% { transform: scale(1.2); opacity:0.9; }
@@ -80,10 +79,7 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
     color:transparent; 
     animation:shine 4s linear infinite; 
 }
-@keyframes shine{ 
-    0%{ background-position:0%; } 
-    100%{ background-position:250%; } 
-}
+@keyframes shine{ 0%{ background-position:0%; } 100%{ background-position:250%; } }
 
 /* ===== About Button ===== */
 .about-btn-box{ width:100%; margin-top:20px; display:flex; }
@@ -111,9 +107,10 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
 .separator{ margin:25px 0; width:100%; height:1px; background:#555; position:relative; }
 .separator::after{ content:""; width:12px; height:12px; border-radius:50%; background:#ff3fa8; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); box-shadow:0 0 10px #ff3fa8; }
 
-/* ===== Video Slider ===== */
+/* ===== Video Slider جديد ===== */
 .video-slider-container{
     width:100%;
+    position:relative;
     overflow:hidden;
     background:#1b1b2f;
     padding:15px;
@@ -122,7 +119,6 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
 }
 .video-track{
     display:flex;
-    gap:15px;
     transition: transform 0.5s ease;
 }
 .video-item{
@@ -141,6 +137,25 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
     transform: scale(1.05) rotate(-1deg);
     box-shadow:0 15px 30px rgba(255,63,168,0.6);
 }
+
+/* ===== Arrow Controls ===== */
+.arrow{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:#ff3fa8;
+    padding:10px;
+    border-radius:50%;
+    cursor:pointer;
+    font-size:20px;
+    color:#fff;
+    user-select:none;
+    box-shadow:0 0 10px rgba(255,63,168,0.7);
+    z-index:10;
+}
+.arrow:hover{ transform:translateY(-50%) scale(1.15); }
+.arrow-left{ left:5px; } 
+.arrow-right{ right:5px; }
 
 @media(max-width:768px){
     .video-item{ flex:0 0 50%; }
@@ -172,6 +187,9 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
     <div class="separator"></div>
 
     <div class="video-slider-container">
+        <div class="arrow arrow-left" onclick="slideLeft()">❮</div>
+        <div class="arrow arrow-right" onclick="slideRight()">❯</div>
+
         <div class="video-track" id="track">
             <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe></div>
@@ -197,14 +215,23 @@ function updateVisible(){
     updateTransform();
 }
 
-function slideRight(){ index++; if(index > total - visible) index = total - visible; updateTransform(); }
-function slideLeft(){ index--; if(index < 0) index = 0; updateTransform(); }
-function updateTransform(){ let offset = (100 / visible) * index; track.style.transform = `translateX(-${offset}%)`; }
+function slideRight(){ 
+    index++; 
+    if(index > total - visible) index = total - visible; 
+    updateTransform(); 
+}
+function slideLeft(){ 
+    index--; 
+    if(index < 0) index = 0; 
+    updateTransform(); 
+}
+function updateTransform(){ 
+    let offset = (100 / visible) * index; 
+    track.style.transform = `translateX(-${offset}%)`; 
+}
 
 window.addEventListener('resize', updateVisible);
 updateVisible();
-
-const statusDot = document.getElementById("statusDot");
 </script>
 
 </body>
