@@ -26,9 +26,9 @@ body{
 /* البوكس الأوسط */
 .container{
     width:95%;
-    max-width:850px;
+    max-width:900px;
     background:#1a1a27;
-    padding:40px;    
+    padding:45px;    
     border-radius:25px;
     box-shadow:0 0 25px rgba(255,0,120,0.25);
     display:flex;
@@ -38,8 +38,8 @@ body{
 
 /* الصورة */
 .avatar{
-    width:160px;
-    height:160px;
+    width:170px;
+    height:170px;
     border-radius:50%;
     overflow:hidden;
     border:4px solid #ff3fa8;
@@ -71,9 +71,10 @@ body{
     height:20px;
     border-radius:50%;
     position:absolute;
-    bottom:0px;
-    right:0px;
+    bottom:5px;
+    right:5px;
     border:2px solid #fff;
+    display:block;
 }
 
 .status.online{
@@ -139,7 +140,7 @@ body{
     white-space:nowrap;
     overflow:hidden;
     border-right:2px solid #fff;
-    animation:typing 4s steps(30) forwards, blink .7s infinite;
+    animation:typing 5s steps(60) forwards, blink .7s infinite;
 }
 
 @keyframes typing{
@@ -185,7 +186,7 @@ body{
 
 .video-track{
     display:flex;
-    transition:0.4s ease;
+    transition:transform 0.4s ease;
 }
 
 .video-item{
@@ -291,28 +292,33 @@ let visible = 4;
 // تحديث عدد الفيديوهات المرئية حسب حجم الشاشة
 function updateVisible(){
     visible = window.innerWidth <= 768 ? 2 : 4;
-    update();
-}
-
-function update(){
+    // تحديث التحول بعد تغيير العرض
     let offset = (100 / visible) * index;
     track.style.transform = `translateX(-${offset}%)`;
 }
 
+// وظائف الأسهم
 function slideRight(){
     index++;
-    if(index > total - visible){ index = 0; }
-    update();
+    if(index > total - visible){ index = total - visible; }
+    if(index < 0) index = 0;
+    updateTransform();
 }
 
 function slideLeft(){
     index--;
-    if(index < 0){ index = total - visible; }
-    update();
+    if(index < 0){ index = 0; }
+    updateTransform();
 }
 
+function updateTransform(){
+    let offset = (100 / visible) * index;
+    track.style.transform = `translateX(-${offset}%)`;
+}
+
+// تهيئة عند التحميل
 window.addEventListener('resize', updateVisible);
-updateVisible(); // التهيئة عند التحميل
+updateVisible();
 </script>
 
 </body>
