@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profile</title>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Tajawal', sans-serif;
+  background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  color: #fff;
+}
+
+/* البوكس الرئيسي */
+.container {
+  width: 90%;
+  max-width: 500px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 25px;
+  padding: 35px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(0,0,0,0.4);
+  backdrop-filter: blur(12px);
+}
+
+/* الصورة + تأثير طلوع ونزول */
+.avatar {
+  width: 180px;
+  height: 180px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  animation: float 4s ease-in-out infinite;
+}
+
+.avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-18px); }
+  100% { transform: translateY(0px); }
+}
+
+/* الاسم */
+.username {
+  font-size: 32px;
+  font-weight: 700;
+  margin-top: 20px;
+  background: linear-gradient(90deg, #6bdcff, #a282ff, #ff7ad9);
+  background-size: 250%;
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: shine 4s infinite linear;
+}
+
+@keyframes shine {
+  0% { background-position: 0%; }
+  100% { background-position: 250%; }
+}
+
+/* زر نبذة عني */
+.btn {
+  margin-top: 25px;
+  display: inline-block;
+  padding: 10px 22px;
+  border-radius: 18px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  background: linear-gradient(135deg, #4ae3ff, #7b9dff);
+  color: #fff;
+  border: none;
+  box-shadow: 0 0 15px rgba(120,180,255,0.4);
+}
+
+/* زر الوصف */
+.desc-box {
+  margin-top: 15px;
+  background: rgba(255,255,255,0.15);
+  padding: 15px 18px;
+  border-radius: 18px;
+  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+  text-align: center;
+  direction: rtl;
+}
+
+/* تأثير الكتابة */
+.typing {
+  font-size: 16px;
+  line-height: 1.6;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid #fff;
+  animation: typing 5s steps(40) forwards, blink .7s infinite;
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink {
+  0%,100% { border-color: transparent; }
+  50% { border-color: #fff; }
+}
+
+/* خط فاصل */
+.separator {
+  width: 100%;
+  height: 2px;
+  background: rgba(255,255,255,0.2);
+  margin: 30px 0;
+  position: relative;
+  border-radius: 2px;
+}
+
+.dot {
+  width: 14px;
+  height: 14px;
+  background: #77c1ff;
+  border-radius: 50%;
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: pulse 1.8s infinite ease-in-out;
+  box-shadow: 0 0 12px #77c1ff;
+}
+
+@keyframes pulse {
+  0%   { transform: translateX(-50%) scale(1); opacity: 1; }
+  50%  { transform: translateX(-50%) scale(1.4); opacity: 0.7; }
+  100% { transform: translateX(-50%) scale(1); opacity: 1; }
+}
+
+/* فيديوهات تشبه حالات واتساب */
+.videos {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+.videos::-webkit-scrollbar {
+  display: none;
+}
+
+.story {
+  flex: 0 0 110px;
+  height: 180px;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  transition: 0.3s;
+}
+
+.story:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 22px rgba(0,150,255,0.6);
+}
+
+.story iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+  <!-- الصورة -->
+  <div class="avatar">
+    <img src="https://i.imgur.com/3G0N6kO.jpg">
+  </div>
+
+  <!-- الاسم -->
+  <div class="username">Mohamed</div>
+
+  <!-- زر نبذة -->
+  <button class="btn">نبــذة عــنّــي</button>
+
+  <!-- الوصف -->
+  <div class="desc-box">
+    <div class="typing">
+      شاب بسيط بهدوء البحر…  
+      وقلبه أعمق من الكلام اللي بيتقال.
+    </div>
+  </div>
+
+  <!-- الخط الفاصل -->
+  <div class="separator">
+    <div class="dot"></div>
+  </div>
+
+  <!-- فيديوهات على شكل حالات -->
+  <div class="videos">
+    <div class="story"><iframe src="https://www.youtube.com/embed/iS-6fT-cBYk"></iframe></div>
+    <div class="story"><iframe src="https://www.youtube.com/embed/iMZ1skkbUWI"></iframe></div>
+    <div class="story"><iframe src="https://www.youtube.com/embed/RVKbjHpcDQg"></iframe></div>
+    <div class="story"><iframe src="https://www.youtube.com/embed/pTo5rjh7J1Y"></iframe></div>
+  </div>
+
+</div>
+
+</body>
+</html>
