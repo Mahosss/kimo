@@ -3,48 +3,168 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>فيديوهات</title>
+<title>Kimo</title>
 
 <style>
 body{
-    background:#0f0f13;
-    font-family:Tahoma;
-    color:#fff;
+    margin:0;
+    padding:0;
+    background:#101018;
+    font-family:'Tajawal', sans-serif;
     direction:rtl;
-    padding:20px;
+    display:flex;
+    justify-content:center;
+    padding:30px;
+    color:#fff;
 }
 
-/* الحاوية الأساسية */
+/* الحاوية */
+.container{
+    width:90%;
+    max-width:450px;
+    background:#1a1a27;
+    padding:25px;
+    border-radius:25px;
+    box-shadow:0 0 20px rgba(255,0,120,0.25);
+}
+
+/* الصورة */
+.avatar{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    overflow:hidden;
+    margin:0 auto;
+    border:4px solid #ff3fa8;
+    box-shadow:0 0 20px rgba(255,63,168,0.4);
+    animation:float 3s infinite ease-in-out;
+}
+
+@keyframes float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-10px); }
+}
+
+.avatar img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* الاسم */
+.name{
+    margin-top:15px;
+    font-size:28px;
+    text-align:center;
+    background:linear-gradient(90deg,#fff,#ff3fa8,#d47cff,#fff);
+    background-size:250%;
+    -webkit-background-clip:text;
+    color:transparent;
+    animation:shine 4s linear infinite;
+}
+
+@keyframes shine{
+    0%{ background-position:0%; }
+    100%{ background-position:250%; }
+}
+
+/* زر نبذة عني */
+.about-btn-box{
+    width:100%;
+    display:flex;
+    justify-content:flex-end;
+    margin-top:20px;
+}
+
+.about-btn{
+    background:#ff3fa8;
+    color:#fff;
+    border:none;
+    padding:7px 15px;
+    font-size:16px;
+    border-radius:10px;
+    cursor:pointer;
+    box-shadow:0 0 10px rgba(255,63,168,0.5);
+    transition:0.3s;
+}
+
+.about-btn:hover{
+    transform:scale(1.07);
+}
+
+/* زر نص */
+.text-box{
+    background:#282836;
+    padding:12px;
+    border-radius:12px;
+    margin-top:15px;
+    border-right:3px solid #ff3fa8;
+}
+
+/* الكتابة */
+.type{
+    white-space:nowrap;
+    overflow:hidden;
+    border-right:2px solid #fff;
+    animation:typing 4s steps(30) forwards, blink .7s infinite;
+}
+
+@keyframes typing{
+    from{ width:0; }
+    to{ width:100%; }
+}
+@keyframes blink{
+    0%,100%{ border-color:transparent; }
+    50%{ border-color:#fff; }
+}
+
+/* الفاصل */
+.separator{
+    margin:25px 0;
+    width:100%;
+    height:1px;
+    background:#555;
+    position:relative;
+}
+.separator::after{
+    content:"";
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ff3fa8;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+    box-shadow:0 0 10px #ff3fa8;
+}
+
+/* سلايدر الفيديو */
 .video-slider-container{
     width:100%;
-    max-width:450px;
-    margin:auto;
     position:relative;
     overflow:hidden;
-    background:#1a1a27;
+    background:#22222f;
     padding:15px;
     border-radius:15px;
-    box-shadow:0 0 15px rgba(255,63,168,0.3);
+    box-shadow:0 0 20px rgba(255,63,168,0.3);
 }
 
-/* الشريط */
 .video-track{
     display:flex;
     transition:0.4s ease;
 }
 
-/* كل فيديو */
 .video-item{
     min-width:100%;
-    padding:5px;
 }
 
-.video-item video{
+video{
     width:100%;
     height:220px;
     border-radius:12px;
     object-fit:cover;
-    box-shadow:0 0 10px rgba(255,63,168,0.4);
+    box-shadow:0 0 10px rgba(255,63,168,0.5);
 }
 
 /* الأسهم */
@@ -53,77 +173,81 @@ body{
     top:50%;
     transform:translateY(-50%);
     background:#ff3fa8;
-    padding:10px 15px;
+    padding:10px;
     border-radius:50%;
     cursor:pointer;
     font-size:20px;
     color:#fff;
-    box-shadow:0 0 10px rgba(255,63,168,0.6);
-    transition:0.3s;
     user-select:none;
+    box-shadow:0 0 10px rgba(255,63,168,0.7);
 }
-
 .arrow:hover{
-    transform:translateY(-50%) scale(1.1);
+    transform:translateY(-50%) scale(1.15);
 }
 
-.arrow-left{
-    left:-5px;
-}
+.arrow-right{ right:-10px; }
+.arrow-left{ left:-10px; }
 
-.arrow-right{
-    right:-5px;
-}
 </style>
 </head>
-
 <body>
 
-<h2 style="text-align:center; margin-bottom:15px;">📽️ فيديوهاتى</h2>
+<div class="container">
 
-<div class="video-slider-container">
-    
-    <!-- الأسهم -->
-    <div class="arrow arrow-left" onclick="slideLeft()">❮</div>
-    <div class="arrow arrow-right" onclick="slideRight()">❯</div>
-
-    <!-- شريط الفيديوهات -->
-    <div class="video-track" id="track">
-
-        <div class="video-item"><video src="video1.mp4" controls></video></div>
-        <div class="video-item"><video src="video2.mp4" controls></video></div>
-        <div class="video-item"><video src="video3.mp4" controls></video></div>
-        <div class="video-item"><video src="video4.mp4" controls></video></div>
-        <div class="video-item"><video src="video5.mp4" controls></video></div>
-        <div class="video-item"><video src="video6.mp4" controls></video></div>
-        <div class="video-item"><video src="video7.mp4" controls></video></div>
-
+    <div class="avatar">
+        <img src="https://img.alfrsantv.com/img/f176541510944881.png">
     </div>
+
+    <div class="name">Kimo</div>
+
+    <div class="about-btn-box">
+        <button class="about-btn">عني</button>
+    </div>
+
+    <div class="text-box">
+        <div class="type"> دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.</div>
+    </div>
+
+    <div class="separator"></div>
+
+    <div class="video-slider-container">
+
+        <div class="arrow arrow-left" onclick="slideLeft()">❮</div>
+        <div class="arrow arrow-right" onclick="slideRight()">❯</div>
+
+        <div class="video-track" id="track">
+
+            <div class="video-item"><video src="video1.mp4" controls></video></div>
+            <div class="video-item"><video src="video2.mp4" controls></video></div>
+            <div class="video-item"><video src="video3.mp4" controls></video></div>
+            <div class="video-item"><video src="video4.mp4" controls></video></div>
+            <div class="video-item"><video src="video5.mp4" controls></video></div>
+            <div class="video-item"><video src="video6.mp4" controls></video></div>
+            <div class="video-item"><video src="video7.mp4" controls></video></div>
+
+        </div>
+    </div>
+
 </div>
 
 <script>
-let currentIndex = 0;
+let index = 0;
 const track = document.getElementById("track");
-const totalVideos = track.children.length;
+const total = track.children.length;
 
-function updateSlider(){
-    track.style.transform = `translateX(-${currentIndex * 100}%)`;
+function update(){
+    track.style.transform = `translateX(-${index * 100}%)`;
 }
 
 function slideRight(){
-    currentIndex++;
-    if(currentIndex >= totalVideos){
-        currentIndex = 0;
-    }
-    updateSlider();
+    index++;
+    if(index >= total){ index = 0; }
+    update();
 }
-
 function slideLeft(){
-    currentIndex--;
-    if(currentIndex < 0){
-        currentIndex = totalVideos - 1;
-    }
-    updateSlider();
+    index--;
+    if(index < 0){ index = total - 1; }
+    update();
 }
 </script>
 
