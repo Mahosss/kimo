@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo Profile</title>
+<title>Kimo 4</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 * { margin:0; padding:0; box-sizing:border-box; font-family:'Cairo', sans-serif; }
 body{ background:#101018; color:#fff; direction:rtl; display:flex; justify-content:center; padding:20px; }
 
+/* البوكس الرئيسي */
 .container{
     max-width:900px;
     width:95%;
@@ -30,16 +31,15 @@ body{ background:#101018; color:#fff; direction:rtl; display:flex; justify-conte
 }
 .avatar img{ width:100%; height:100%; object-fit:cover; transition: transform 0.3s ease; }
 .avatar:active img{ transform: scale(1.2); }
-
 @keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
 
+/* دائرة الحالة */
 .status{
     width:16px; height:16px; border-radius:50%; position:absolute; bottom:6px; right:6px;
     border:2px solid #fff;
 }
 .status.online{ background:#4CAF50; animation:pulse 1.5s infinite; }
 .status.offline{ background:#F44336; }
-
 @keyframes pulse{0%{transform:scale(1);opacity:0.8;}50%{transform:scale(1.4);opacity:0.5;}100%{transform:scale(1);opacity:0.8;}}
 
 /* الاسم */
@@ -70,7 +70,7 @@ body{ background:#101018; color:#fff; direction:rtl; display:flex; justify-conte
 .separator::after{ content:""; width:12px; height:12px; border-radius:50%; background:#ff3fa8; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); box-shadow:0 0 10px #ff3fa8; }
 
 /* سلايدر الفيديوهات */
-.video-slider-container{ width:100%; position:relative; overflow:hidden; background:#22222f; padding:15px; border-radius:15px; box-shadow:0 0 20px rgba(255,63,168,0.3); }
+.video-slider-container{ width:100%; position:relative; overflow:hidden; background:#22222f; padding:15px; border-radius:15px; box-shadow:0 0 20px rgba(255,63,168,0.3); margin-top:20px; }
 .video-track{ display:flex; transition:transform 0.4s ease; }
 .video-item{ flex:0 0 25%; padding:5px; box-sizing:border-box; }
 .video-item iframe{ width:100%; height:320px; border-radius:12px; box-shadow:0 0 10px rgba(255,63,168,0.5); }
@@ -127,22 +127,20 @@ body{ background:#101018; color:#fff; direction:rtl; display:flex; justify-conte
 </div>
 
 <script>
-let track = document.getElementById("track");
-let items = track.children;
+const track = document.getElementById("track");
+const items = track.children;
 let index = 0;
 
-function getVisibleCount() {
-    return window.innerWidth <= 768 ? 2 : 4;
-}
+function getVisibleCount() { return window.innerWidth <= 768 ? 2 : 4; }
 
 function updateSlider() {
-    let visible = getVisibleCount();
-    let itemWidth = items[0].offsetWidth;
+    const visible = getVisibleCount();
+    const itemWidth = items[0].offsetWidth;
     track.style.transform = `translateX(-${index * itemWidth}px)`;
 }
 
 function slideRight() {
-    let visible = getVisibleCount();
+    const visible = getVisibleCount();
     if(index < items.length - visible) index++;
     updateSlider();
 }
@@ -150,15 +148,13 @@ function slideLeft() {
     if(index > 0) index--;
     updateSlider();
 }
-
 window.addEventListener('resize', updateSlider);
 updateSlider();
 
-// تبديل حالة أونلاين/أوفلاين بسهولة
-let statusDot = document.getElementById("statusDot");
-// مثال: للتبديل بين أونلاين وأوفلاين
-// statusDot.classList.remove("online");
-// statusDot.classList.add("offline");
+// مثال تبديل حالة أونلاين/أوفلاين
+const statusDot = document.getElementById("statusDot");
+// لتجربة: uncomment لتبديل الحالة
+// statusDot.classList.remove("online"); statusDot.classList.add("offline");
 </script>
 
 </body>
