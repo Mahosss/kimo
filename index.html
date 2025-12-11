@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo Profile Slider</title>
+<title>Kimo 6</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Cairo',sans-serif;}
@@ -123,7 +123,7 @@ function getVisibleCount(){ return window.innerWidth <= 768 ? 2 : 4; }
 
 function updateSlider(){
     const visible = getVisibleCount();
-    const itemWidth = items[0].getBoundingClientRect().width;
+    const itemWidth = items[0].getBoundingClientRect().width + 10; // +padding
     const maxIndex = items.length - visible;
     if(index < 0) index = 0;
     if(index > maxIndex) index = maxIndex;
