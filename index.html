@@ -21,7 +21,6 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
     align-items:center; 
 }
 
-/* ======= Avatar with hover zoom effect ======= */
 .avatar {
     width:170px; 
     height:170px; 
@@ -41,11 +40,11 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
     transition: transform 0.4s ease;
 }
 .avatar:hover {
-    transform: scale(1.1); /* رفع خفيف للصورة */
+    transform: scale(1.1); 
     box-shadow:0 15px 30px rgba(255,63,168,0.6);
 }
 .avatar:hover img {
-    transform: scale(1.25); /* تكبير الصورة عند المرور */
+    transform: scale(1.25); 
 }
 
 .status{ 
@@ -152,7 +151,6 @@ body{ background:#101018; direction:rtl; display:flex; justify-content:center; p
         <div class="arrow arrow-right" onclick="slideRight()">❯</div>
 
         <div class="video-track" id="track">
-            <div class="video-item"><iframe src="https://www.youtube.com/embed/X2OKDgKwVBQ" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/F4npeninpf4" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/YKMJXdNBvNQ" allowfullscreen></iframe></div>
             <div class="video-item"><iframe src="https://www.youtube.com/embed/wXmzYi-ufEA" allowfullscreen></iframe></div>
@@ -185,7 +183,6 @@ window.addEventListener('resize', updateVisible);
 updateVisible();
 
 const statusDot = document.getElementById("statusDot");
-// statusDot.classList.remove("online"); statusDot.classList.add("offline");
 </script>
 
 </body>
