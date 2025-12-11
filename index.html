@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kimo</title>
+<title>Kimo Video Slider</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700&display=swap" rel="stylesheet">
 <style>
 /* ===== Reset & Base ===== */
@@ -94,15 +94,14 @@ body {
     border-radius:12px;
     border-right:3px solid #ff3fa8;
     margin-bottom:20px;
+    min-height:40px;
 }
-.type {
+#aboutText {
     white-space:nowrap;
     overflow:hidden;
     border-right:2px solid #fff;
-    animation:typing 5s steps(60) forwards, blink .7s infinite;
+    padding-right:5px;
 }
-@keyframes typing { from{width:0} to{width:100%} }
-@keyframes blink { 0%,100%{border-color:transparent} 50%{border-color:#fff} }
 
 /* ===== Separator ===== */
 .separator {
@@ -198,9 +197,7 @@ body {
 
     <!-- Text Box -->
     <div class="text-box">
-        <div class="type">
-            الفتره دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.
-        </div>
+        <div id="aboutText"></div>
     </div>
 
     <div class="separator"></div>
@@ -221,6 +218,7 @@ body {
 </div>
 
 <script>
+// ===== Video Slider =====
 const videoTrack = document.getElementById('videoTrack');
 const videoItems = Array.from(videoTrack.children);
 let videoIndex = 0;
@@ -233,6 +231,38 @@ function moveVideo(dir){
     let itemWidth = videoItems[0].offsetWidth + 10; // عرض الفيديو + margin
     videoTrack.style.transform = `translateX(-${videoIndex * itemWidth}px)`;
 }
+
+const aboutTexts = [
+  "الفترة دي محدش يكلمني إلا إذا كان كلامه هيخليني مبسوط غير كده لأ والله مش هينفع.",
+  "سبحان الله وبحمدة سبحان الله العظيم",
+  "يارب."
+];
+
+let currentIndex = 0;
+const aboutElement = document.getElementById("aboutText");
+const typingSpeed = 50;
+
+function typeText(text, callback) {
+  aboutElement.textContent = "";
+  let i = 0;
+  const interval = setInterval(() => {
+    aboutElement.textContent += text[i];
+    i++;
+    if(i >= text.length) {
+      clearInterval(interval);
+      setTimeout(callback, 2000); 
+    }
+  }, typingSpeed);
+}
+
+function showNextText() {
+  typeText(aboutTexts[currentIndex], () => {
+    currentIndex = (currentIndex + 1) % aboutTexts.length;
+    showNextText();
+  });
+}
+
+showNextText();
 </script>
 
 </body>
